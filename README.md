@@ -6,9 +6,9 @@ Integrantes:
 * Vilchez, Osman
 
 ## Introducción
-Los motores de búsqueda nos permiten encontrar todo lo que necesitamos en internet.
+Las redes sociales como twitter se han convertido en una fuente importante de información, ya sea para conocer las preferencias y/o gustos de terminado grupo o para determinar cual es el tema del momento.
+Siendo así, se vuelve muy importante encontrar la forma de poder buscar sobre todo este mar de información la cual debido a su naturaleza es muy variada y carece de una estructura definida.
 
-En este proyecto elaboraremos un motor de búsqueda que nos permitirá recuperar documentos, basado en un índice invertido que nos permita recibir resultados más precisos.
 ##  Backend
 
 ### Implementación
