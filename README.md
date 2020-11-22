@@ -1,4 +1,4 @@
-# Base de Datos 2: Proyecto 2
+# Base de Datos 2: Proyecto 2 - Motor de búsqueda
 
 Integrantes:
 * Mosquera, Raúl
@@ -6,12 +6,17 @@ Integrantes:
 * Vilchez, Osman
 
 ## Introducción
-Blah BlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlah.
 
-## Implementación
+##  Backend
 
-### Índice Invertido
+### Implementación
 
-### Manejo de Memoria Secundaria
+#### Índice Invertido
 
-### Queries
+#### Manejo de Memoria Secundaria
+
+#### Queries
+
+##  Frontend
+
+### Integración con NodeJS y Angular
