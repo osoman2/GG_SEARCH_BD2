@@ -22,3 +22,4 @@ En este proyecto elaboraremos un motor de búsqueda que nos permitirá recuperar
 ##  Frontend
 
 ### Integración con NodeJS y Angular
+![enter image description here](https://raw.githubusercontent.com/THEFLILUX/GG_SEARCH_BD2/main/searchEngine.PNG)
