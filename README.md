@@ -6,7 +6,9 @@ Integrantes:
 * Vilchez, Osman
 
 ## Introducción
+Los motores de búsqueda nos permiten encontrar todo lo que necesitamos en internet.
 
+En este proyecto elaboraremos un motor de búsqueda que nos permitirá recuperar documentos, basado en un índice invertido que nos permita recibir resultados más precisos.
 ##  Backend
 
 ### Implementación
