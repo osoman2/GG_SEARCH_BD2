@@ -27,6 +27,9 @@ Se realizó una página para el motor de búsqueda, en el cual mostramos un pequ
 ### Integración con NodeJS y Angular
 
 * server.js
+
+El server recibe un archivo y lo envia al index.html.
+
 ```
 const express = require('express');
 const path = require('path');
@@ -49,6 +52,9 @@ app.listen(port, (req, res)=>{
 ```
 
 * posts.js
+
+Recibimos el archivo JSON y lo enviamos al frontend a partir de un router.
+
 ```
 const fs = require('fs');
 const express = require('express');
@@ -65,6 +71,9 @@ module.exports = router;
 ```
 
 * posts.service.ts
+
+Usamos un service que hará un request al server de todos los tweets y los injectará en el frontend.
+
 ```
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -87,6 +96,9 @@ export class PostsService {
 ```
 
 * posts.component.ts
+
+Cuando nuestro componente es iniciatizado, vamos a usar el método de nuestro service para recibir todos los tweets y almacenarlos en nuestro array posts.
+
 ```
 import { Component, OnInit } from '@angular/core';
 import {PostsService} from '../posts.service';
@@ -113,6 +125,9 @@ export class PostsComponent implements OnInit {
 
 
 * app.module.ts
+
+Declaramos nuestro route y lo registramos.
+
 ```
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -152,9 +167,10 @@ const Routes = [
 export class AppModule { }
 ```
 
+* posts.component.html
+
 En una tabla del html, llamamos a cada elemento del JSON para que en cada fila imprima la información de un tweet.
 
-* posts.component.html
 ```
 <div class="container table-div">
     <table class="table table-striped">
