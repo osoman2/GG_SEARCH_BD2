@@ -17,7 +17,80 @@ En este proyecto elaboraremos un buscador que nos recuperará documentos, basado
 
 #### Manejo de Memoria Secundaria
 
-#### Queries
+#### Queries - PriorityQueue
+Los queries en lenguaje natural son recibidos en formato Json y son transformados a strings para el procesamiento en el backend. A partir de acá, el proceso para buscar los Documentos que contienen los tweets empezará:
+
+```
+def search_KNN(query,k):
+    result = PriorityQueue()
+    q_scores = calculate_query_score(query,terms) # tokens_score_query [ (term1,tf-idf),(term2,tf-idf)... ,NORMA]
+    # normas := {id:[norma_id,distance,file_origen], ...} 
+    print(q_scores)
+    norma_q = q_scores[-1]
+    for i in range(len(q_scores)-1):
+        term = q_scores[i][0]
+        score =  q_scores[i][1]
+        if term in terms: 
+            for id in normas:
+                #busco si hay el documento 
+                #id = normas[did][0]
+                if id in terms[term].tfidf:
+                    #norma asociada a un documento
+                    norma_doc = normas[id].norma 
+                    normas[id].dist_q = normas[id].dist_q + (score*terms[term].tfidf[id])/(norma_doc*norma_q)
+    
+    for index in normas:
+        d = normas[index].dist_q
+        if result.qsize()<k:
+            result.put((-1*d,d,index))
+        else: 
+            aux = result.get()
+            aux_v = aux[0]
+            aux_d = aux[1]
+            aux_ind = aux[2]
+            if -1*d > aux_v:
+              result.put((-1*d,d,index))
+            else:
+              result.put((aux_v,aux_d,aux_ind)) 
+    res = []
+    while result.empty()!=1:  
+        aux = result.get()
+        aux_v = aux[1]
+        aux_ind = aux[2]
+        res.append(aux_ind)
+    res.reverse()
+    return res
+    
+```
+
+Search_KNN recibe como parámetro el query en string y la cantidad de tweets que serán recuperados. Y retorna el id de los tweets y el nombre del documento asociado al tweet. La función se divide en dos segmentos:
+
+1. 
+    1.1 Generar el vector asociado al query que contiene el TF_IDF de cada término reducido(sin StopWords y en sufijos)  
+    1.2 Generación de un vector que contiene la distancia coseno de cada tweet con el vector del query
+2.  **A partir de for index in normas**
+    2.1 Se genera la estructura de Heap asociada al Queue con los K primeros (id,doc_origen) y en función a sus respectivas distancias
+    2.2 Se mantiene la estructura de Heap con los K más cercanos
+    2.3 Se retornan los datos almacenados en la priority queue
+    
+    
+    
+
+**Complejidad de búsqueda de los K** O(n*log(k*n))
+
+**Complejidad General** O(O(busqueda_k)+O(Recorrido de Normas)) = O(n*log(k*n)+n^2)
+
+
+### Recuperación
+
+Para la recuperación se utiliza el vector de los id de los tweets y sus documentos asociados para acelerar la búsqueda de los tweets dispersados en la memoria secundaria. De ahí buscamos en memoria secundaria el doc_origen asociado a cada id resultante y buscamos el tweet. Finalmente, retornaremos el Json que compone el tweet para que pueda ser mostrado en el Frontend:
+
+```
+
+
+
+
+```
 
 ##  Frontend
 Se realizó una página para el motor de búsqueda, en el cual mostramos un pequeño buscador y un visualizador del JSON, que representa los tweets.
